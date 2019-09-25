@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.baizhi.dao.ChapterDAO">
+
+    <select id="queryByPage" resultType="Chapter">
+        select * from t_chapter where album_id = #{album_id}
+    </select>
+    <select id="totalcounts" resultType="Integer">
+        select count(*) from t_chapter where album_id = #{album_id}
+    </select>
+    <insert id="add" parameterType="Chapter">
+        insert into t_chapter values (#{id},#{name},#{url},#{size},#{duration},#{up_date},#{album_id})
+    </insert>
+    <update id="update">
+        update t_chapter
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="url != null">
+                url = #{url},
+            </if>
+            <if test="size != null">
+                size = #{size},
+            </if>
+            <if test="duration != null">
+                duration = #{duration},
+            </if>
+            <if test="up_date != null">
+                up_date = #{up_date}
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+    <delete id="dalete">
+        delete from t_chapter where id=#{id}
+    </delete>
+
+
+
+    <!--this.id = id;-->
+    <!--this.name = name;-->
+    <!--this.url = url;-->
+    <!--this.size = size;-->
+    <!--this.duration = duration;-->
+    <!--this.up_date = up_date;-->
+    <!--this.album_id = album_id;-->
+
+
+</mapper>
